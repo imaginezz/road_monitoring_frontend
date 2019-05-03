@@ -8,7 +8,11 @@ import { MainComponent } from './main/main.component'
 import {
   MatToolbarModule,
   MatIconModule,
-  MatGridListModule
+  MatSidenavModule,
+  MatButtonModule,
+  MatGridListModule,
+  MatDividerModule,
+  MatListModule
 } from '@angular/material'
 
 @NgModule({
@@ -19,7 +23,11 @@ import {
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
-    MatGridListModule
+    MatSidenavModule,
+    MatButtonModule,
+    MatGridListModule,
+    MatDividerModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
