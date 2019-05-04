@@ -1,11 +1,47 @@
-.main-container {
-  margin: 10px;
-  height: 100%;
-
-  #left-side {
-    img {
-      width: 400px;
-      height: 400px;
+#main-panel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  max-width: 1024px;
+  min-width: 840px;
+  .panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 30px;
+    button {
+      width: 40%;
+    }
+  }
+  #left {
+    #name {
+      margin: 20px 0;
+    }
+    svg {
+      width: 450px;
+      height: 450px;
+      rect {
+        stroke: red;
+        stroke-width: 4;
+        fill: transparent;
+      }
+    }
+  }
+  #right {
+    #data {
+      display: flex;
+      flex-direction: row;
+      mat-list {
+        margin: 20px;
+        width: 160px;
+      }
     }
   }
 }

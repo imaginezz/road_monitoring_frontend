@@ -1,47 +1,98 @@
-<mat-grid-list cols="2">
-  <mat-grid-tile>
-    <div>图片的名称.jpg</div>
-    <img src="assets/test_image.jpg" alt="test_image">
-    <div id="slide-btns">
-      <button mat-flat-button color="primary">上一张</button>
-      <button mat-flat-button color="primary">下一张</button>
+<div id="main-panel">
+  <div id="left" class="panel">
+    <div id="name">图片的名称.jpg</div>
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <image xlink:href="assets/test_image.jpg" x="0" y="0" height="450px" width="450px" />
+      <rect x="10" y="110" width="60" height="60" />
+    </svg>
+    <div class="btns">
+      <button mat-flat-button color="primary">
+        <mat-icon class="title-icon">keyboard_arrow_left</mat-icon>上一张
+      </button>
+      <button mat-flat-button color="primary">下一张<mat-icon class="title-icon">keyboard_arrow_right</mat-icon></button>
     </div>
+  </div>
+  <div id="right" class="panel">
+    <button mat-flat-button color="primary">重置</button>
+    <div id="data">
+      <mat-list>
+        <mat-list-item>结果数据</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>类型：2</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Xmin：3</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Xmax：330</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Ymin：34</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Ymax：393</mat-list-item>
+      </mat-list>
+      <mat-list>
+        <mat-list-item>新数据</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>类型：2</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Xmin：3</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Xmax：330</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Ymin：34</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Ymax：393</mat-list-item>
+      </mat-list>
+    </div>
+    <div class="btns">
+      <button mat-flat-button color="primary">写回</button>
+      <button mat-flat-button color="primary">浏览</button>
+    </div>
+  </div>
+</div>
+<!-- <mat-grid-list cols="3" id="main-grid">
+  <mat-grid-tile class="grid_tile_cls">
+    <div>图片的名称.jpg</div>
+    <button mat-flat-button color="primary">上一张</button>
+    <button mat-flat-button color="primary">下一张</button>
   </mat-grid-tile>
   <mat-grid-tile>
     <button mat-flat-button color="primary">重置</button>
-    <mat-grid-list cols="2">
-      <mat-grid-tile>
-        <mat-list>
-          <mat-list-item>结果数据</mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item>类型：2</mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item>Xmin：3</mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item>Xmax：330</mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item>Ymin：34</mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item>Ymax：393</mat-list-item>
-        </mat-list>
-      </mat-grid-tile>
-      <mat-grid-tile>
-        <mat-list>
-          <mat-list-item>新数据</mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item>类型：2</mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item>Xmin：3</mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item>Xmax：330</mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item>Ymin：34</mat-list-item>
-          <mat-divider></mat-divider>
-          <mat-list-item>Ymax：393</mat-list-item>
-        </mat-list>
-      </mat-grid-tile>
-    </mat-grid-list>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="2">
+    <img src="assets/test_image.jpg" alt="test_image" />
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <mat-list>
+      <mat-list-item>结果数据</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>类型：2</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Xmin：3</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Xmax：330</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Ymin：34</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Ymax：393</mat-list-item>
+    </mat-list>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-list>
+      <mat-list-item>新数据</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>类型：2</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Xmin：3</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Xmax：330</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Ymin：34</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Ymax：393</mat-list-item>
+    </mat-list>
+  </mat-grid-tile>
+  <mat-grid-tile>
     <button mat-flat-button color="primary">写回</button>
     <button mat-flat-button color="primary">浏览</button>
   </mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list> -->
