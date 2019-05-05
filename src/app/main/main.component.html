@@ -1,98 +1,72 @@
 <div id="main-panel">
   <div id="left" class="panel">
-    <div id="name">图片的名称.jpg</div>
+    <div id="name">{{road.Name}}</div>
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-      <image xlink:href="assets/test_image.jpg" x="0" y="0" height="450px" width="450px" />
-      <rect x="10" y="110" width="60" height="60" />
+      <image [attr.xlink:href]="road.Src" x="0" y="0" height="450px" width="450px" />
+      <rect *ngFor="let rect of road.Rects;let i=index" [attr.x]="rect.Xmin" [attr.y]="rect.Ymin"
+        [attr.width]="rect.Xmax-rect.Xmin" [attr.height]="rect.Ymax-rect.Ymin" [class.nowRect]="i==nowRectId" />
     </svg>
     <div class="btns">
-      <button mat-flat-button color="primary">
+      <button mat-flat-button color="primary" (click)="moveToPrevRoad()" [disabled]="prevRoads.length==0">
         <mat-icon class="title-icon">keyboard_arrow_left</mat-icon>上一张
       </button>
-      <button mat-flat-button color="primary">下一张<mat-icon class="title-icon">keyboard_arrow_right</mat-icon></button>
+      <button mat-flat-button color="primary" (click)="moveToNextRoad()">下一张<mat-icon class="title-icon">
+          keyboard_arrow_right</mat-icon></button>
     </div>
   </div>
   <div id="right" class="panel">
-    <button mat-flat-button color="primary">重置</button>
+    <button mat-flat-button *ngIf="road.Rects.length>1" (click)="moveToNextRect()" color="primary">下一组</button>
     <div id="data">
       <mat-list>
         <mat-list-item>结果数据</mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item>类型：2</mat-list-item>
+        <mat-list-item>类型：{{getNowType()}}</mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item>Xmin：3</mat-list-item>
+        <mat-list-item>Xmin：{{road.Rects[nowRectId].Xmin}}</mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item>Xmax：330</mat-list-item>
+        <mat-list-item>Xmax：{{road.Rects[nowRectId].Xmax}}</mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item>Ymin：34</mat-list-item>
+        <mat-list-item>Ymin：{{road.Rects[nowRectId].Ymin}}</mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item>Ymax：393</mat-list-item>
+        <mat-list-item>Ymax：{{road.Rects[nowRectId].Ymax}}</mat-list-item>
       </mat-list>
-      <mat-list>
-        <mat-list-item>新数据</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>类型：2</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Xmin：3</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Xmax：330</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Ymin：34</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Ymax：393</mat-list-item>
+      <mat-list id="correct-data">
+        <mat-list-item>修正数据</mat-list-item>
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>类型</mat-label>
+            <mat-select>
+              <mat-option type="text" *ngFor="let type of roadRectTypes">
+                {{type}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-form-field>
+            <input matInput placeholder="Xmin" [(ngModel)]="newRoad.Rects[nowRectId].Xmin">
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-form-field>
+            <input matInput placeholder="Xmax" [(ngModel)]="newRoad.Rects[nowRectId].Xmax">
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-form-field>
+            <input matInput placeholder="Ymin" [(ngModel)]="newRoad.Rects[nowRectId].Ymin">
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-form-field>
+            <input matInput placeholder="Ymax" [(ngModel)]="newRoad.Rects[nowRectId].Ymax">
+          </mat-form-field>
+        </mat-list-item>
       </mat-list>
     </div>
     <div class="btns">
       <button mat-flat-button color="primary">写回</button>
-      <button mat-flat-button color="primary">浏览</button>
+      <button mat-flat-button color="primary" (click)="resetCorrectData()">重置</button>
     </div>
   </div>
 </div>
-<!-- <mat-grid-list cols="3" id="main-grid">
-  <mat-grid-tile class="grid_tile_cls">
-    <div>图片的名称.jpg</div>
-    <button mat-flat-button color="primary">上一张</button>
-    <button mat-flat-button color="primary">下一张</button>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <button mat-flat-button color="primary">重置</button>
-  </mat-grid-tile>
-  <mat-grid-tile [colspan]="2" [rowspan]="2">
-    <img src="assets/test_image.jpg" alt="test_image" />
-  </mat-grid-tile>
-
-  <mat-grid-tile>
-    <mat-list>
-      <mat-list-item>结果数据</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>类型：2</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Xmin：3</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Xmax：330</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Ymin：34</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Ymax：393</mat-list-item>
-    </mat-list>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-list>
-      <mat-list-item>新数据</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>类型：2</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Xmin：3</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Xmax：330</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Ymin：34</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Ymax：393</mat-list-item>
-    </mat-list>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <button mat-flat-button color="primary">写回</button>
-    <button mat-flat-button color="primary">浏览</button>
-  </mat-grid-tile>
-</mat-grid-list> -->
