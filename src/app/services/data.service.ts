@@ -16,6 +16,7 @@ export class DataService {
 
   constructor(private http: HttpClient, private csv: CsvService) {
     this.roads = new Array<Road>(...ROADS)
+    this.getRawData()
   }
 
   getRoads(): Observable<Array<Road>> {
@@ -35,7 +36,7 @@ export class DataService {
     this.http
       .get(this.url + 'results.csv', { responseType: 'text' })
       .subscribe(data => {
-        this.roads = this.csv.parseCsv(data)
+        this.roads.push(...this.csv.parseCsv(data))
       })
   }
 }

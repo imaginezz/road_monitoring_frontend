@@ -12,7 +12,7 @@ export class CsvService {
     for (let i in lines) {
       let road = new Road()
       road.Rects = new Array<RoadRect>()
-      road.Id = parseInt(i)
+      road.Id = parseInt(i) + 1
       let line = lines[i]
       let lineSplit = line.split(',')
       road.Name = lineSplit[0]

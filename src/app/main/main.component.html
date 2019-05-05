@@ -36,8 +36,8 @@
         <mat-list-item>
           <mat-form-field>
             <mat-label>类型</mat-label>
-            <mat-select>
-              <mat-option type="text" *ngFor="let type of roadRectTypes">
+            <mat-select [(ngModel)]="newRoad.Rects[nowRectId].Type" selected="newRoad.Rects[nowRectId].Type">
+              <mat-option *ngFor="let type of roadRectTypes" [value]="getType(type)">
                 {{type}}
               </mat-option>
             </mat-select>

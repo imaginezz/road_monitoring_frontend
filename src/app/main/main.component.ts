@@ -21,16 +21,20 @@ export class MainComponent implements OnInit {
     this.getRoadData()
     this.roadRectTypes = new Array<string>()
     this.loadRoadRectTypes()
-
-    this.dataService.getRawData()
   }
 
   getRoadData(roadId?: number): void {
     if (roadId) {
-      this.dataService.getRoad(roadId).subscribe(road => (this.road = road))
+      this.dataService
+        .getRoad(roadId)
+        .subscribe(road => this.loadRoadData(road))
     } else {
-      this.dataService.getRoad().subscribe(road => (this.road = road))
+      this.dataService.getRoad().subscribe(road => this.loadRoadData(road))
     }
+  }
+
+  private loadRoadData(road: Road): void {
+    this.road = road
     if (this.road) {
       if (this.road.Rects.length == 0) {
         this.nowRectId = -1
@@ -52,7 +56,6 @@ export class MainComponent implements OnInit {
   }
 
   getType(type: string) {
-    console.log(type)
     return RoadRectType[type]
   }
 
@@ -79,7 +82,6 @@ export class MainComponent implements OnInit {
   }
 
   moveToPrevRoad(): void {
-    console.log(this.prevRoads)
     if (this.prevRoads.length > 0) {
       let prevId = this.prevRoads.pop()
       this.getRoadData(prevId)
