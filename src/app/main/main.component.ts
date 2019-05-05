@@ -90,4 +90,10 @@ export class MainComponent implements OnInit {
   resetCorrectData() {
     this.newRoad = JSON.parse(JSON.stringify(this.road))
   }
+  recordCorrectData() {
+    this.road.Rects = JSON.parse(JSON.stringify(this.newRoad.Rects))
+  }
+  downloadConfig() {
+    this.dataService.downCorrectDatas()
+  }
 }

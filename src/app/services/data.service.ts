@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable, of } from 'rxjs'
+import { saveAs } from 'file-saver'
+import * as random from 'random'
+
+import { CsvService } from './csv.service'
 import { Road, RoadRect, RoadRectType } from '../road-entities'
 import { ROADS } from '../mock-road-entities'
-
-import * as random from 'random'
-import { CsvService } from './csv.service'
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,10 @@ export class DataService {
       .subscribe(data => {
         this.roads.push(...this.csv.parseCsv(data))
       })
+  }
+  downCorrectDatas(): void {
+    let data = this.csv.deparseCsv(this.roads.slice(1))
+    var blob = new Blob([data], { type: 'text/plain;charset=utf-8' })
+    saveAs.saveAs(blob, 'new_results.txt')
   }
 }

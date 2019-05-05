@@ -33,4 +33,28 @@ export class CsvService {
     }
     return roads
   }
+
+  deparseCsv(roads: Array<Road>): string {
+    let contentArr = []
+    for (let i in roads) {
+      let road = roads[i]
+      let roadContent = ''
+      roadContent += road.Name + ','
+      let rectContent = new Array<string>()
+      for (let j in road.Rects) {
+        let rect = road.Rects[j]
+        let rectContentArr = new Array<number>()
+        rectContentArr.push(rect.Type)
+        rectContentArr.push(rect.Xmin)
+        rectContentArr.push(rect.Ymin)
+        rectContentArr.push(rect.Xmax)
+        rectContentArr.push(rect.Ymax)
+        rectContent.push(rectContentArr.join(' '))
+      }
+      roadContent += rectContent.join(' ')
+      contentArr.push(roadContent)
+    }
+    let content = contentArr.join('\n')
+    return content
+  }
 }
