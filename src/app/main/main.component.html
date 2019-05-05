@@ -3,8 +3,9 @@
     <div id="name">{{road.Name}}</div>
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <image [attr.xlink:href]="road.Src" x="0" y="0" height="450px" width="450px" />
-      <rect *ngFor="let rect of road.Rects;let i=index" [attr.x]="rect.Xmin" [attr.y]="rect.Ymin"
-        [attr.width]="rect.Xmax-rect.Xmin" [attr.height]="rect.Ymax-rect.Ymin" [class.nowRect]="i==nowRectId" />
+      <rect *ngFor="let rect of road.Rects;let i=index" [attr.x]="0.75*(rect.Xmin)" [attr.y]="0.75*(rect.Ymin)"
+        [attr.width]="0.75*(rect.Xmax-rect.Xmin)" [attr.height]="0.75*(rect.Ymax-rect.Ymin)"
+        [class.nowRect]="i==nowRectId" />
     </svg>
     <div class="btns">
       <button mat-flat-button color="primary" (click)="moveToPrevRoad()" [disabled]="prevRoads.length==0">

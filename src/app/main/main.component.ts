@@ -13,7 +13,6 @@ export class MainComponent implements OnInit {
   nowRectId: number
   prevRoads: Array<number>
   newRoad: Road
-  nowType: number
 
   constructor(private dataService: DataService) {}
 
@@ -22,17 +21,17 @@ export class MainComponent implements OnInit {
     this.getRoadData()
     this.roadRectTypes = new Array<string>()
     this.loadRoadRectTypes()
-    this.nowType = 0
+
+    this.dataService.getRawData()
   }
 
   getRoadData(roadId?: number): void {
     if (roadId) {
-      this.road = this.dataService.getRoad(roadId)
+      this.dataService.getRoad(roadId).subscribe(road => (this.road = road))
     } else {
-      this.road = this.dataService.getRoad()
+      this.dataService.getRoad().subscribe(road => (this.road = road))
     }
     if (this.road) {
-      console.log(this.road)
       if (this.road.Rects.length == 0) {
         this.nowRectId = -1
       } else {
