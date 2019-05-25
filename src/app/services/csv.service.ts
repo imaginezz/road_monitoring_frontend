@@ -16,7 +16,7 @@ export class CsvService {
       let line = lines[i]
       let lineSplit = line.split(',')
       road.Name = lineSplit[0]
-      road.Src = '/road_images/' + road.Name
+      road.Src = '/file/road_images/' + road.Name
       if (lineSplit.length < 2) continue
       let imgData = lineSplit[1].split(' ')
       let dataNum = imgData.length / 5

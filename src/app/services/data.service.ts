@@ -12,7 +12,7 @@ import { ROADS } from '../mock-road-entities'
   providedIn: 'root'
 })
 export class DataService {
-  private url: string = ''
+  private url: string = '/file/'
   private roads: Array<Road>
 
   constructor(private http: HttpClient, private csv: CsvService) {
@@ -26,6 +26,7 @@ export class DataService {
   getRoad(roadId?: number): Observable<Road> {
     if (this.roads.length > 0) {
       if (roadId) {
+        roadId = roadId % this.roads.length
         return of(this.roads[roadId])
       } else {
         let rNum = random.int(0, this.roads.length - 1)

@@ -15,12 +15,14 @@ import {
   MatDividerModule,
   MatListModule,
   MatSelectModule,
-  MatInputModule
+  MatInputModule,
+  MatCardModule
 } from '@angular/material'
 import { FormsModule } from '@angular/forms'
+import { TrainingPanelComponent } from './training-panel/training-panel.component'
 
 @NgModule({
-  declarations: [AppComponent, MainComponent],
+  declarations: [AppComponent, MainComponent, TrainingPanelComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,7 +39,8 @@ import { FormsModule } from '@angular/forms'
     MatDividerModule,
     MatListModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

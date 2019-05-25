@@ -1,0 +1,56 @@
+#main-panel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  max-width: 1024px;
+  min-width: 840px;
+
+  .panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+
+
+  #left {
+    #name {
+      margin: 20px 0;
+    }
+
+    width:280px;
+  }
+
+  #right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .btns {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-bottom: 30px;
+
+      button {
+        margin-top: 10px;
+        width: 160px;
+      }
+    }
+
+    .outputs {
+      width: 440px;
+      height: 260px;
+      overflow-y: scroll;
+    }
+
+    .link {
+      margin-top: 20px;
+      width: 200px;
+    }
+  }
+
+}

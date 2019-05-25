@@ -78,7 +78,8 @@ export class MainComponent implements OnInit {
 
   moveToNextRoad(): void {
     this.prevRoads.push(this.road.Id)
-    this.getRoadData()
+    // this.getRoadData()
+    this.getRoadData(this.road.Id + 1)
   }
 
   moveToPrevRoad(): void {

@@ -1,36 +1,64 @@
 <div id="main-panel">
   <div id="left" class="panel">
-    <div id="name">{{road.Name}}</div>
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-      <image [attr.xlink:href]="road.Src" x="0" y="0" height="450px" width="450px" />
-      <rect *ngFor="let rect of newRoad.Rects;let i=index" [attr.x]="0.75*(rect.Xmin)" [attr.y]="0.75*(rect.Ymin)"
-        [attr.width]="0.75*(rect.Xmax-rect.Xmin)" [attr.height]="0.75*(rect.Ymax-rect.Ymin)"
-        [class.nowRect]="i==nowRectId" />
+    <div id="name">{{ road.Name }}</div>
+    <svg
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <image
+        [attr.xlink:href]="road.Src"
+        x="0"
+        y="0"
+        height="450px"
+        width="450px"
+      />
+      <rect
+        *ngFor="let rect of newRoad.Rects; let i = index"
+        [attr.x]="0.75 * rect.Xmin"
+        [attr.y]="0.75 * rect.Ymin"
+        [attr.width]="0.75 * (rect.Xmax - rect.Xmin)"
+        [attr.height]="0.75 * (rect.Ymax - rect.Ymin)"
+        [class.nowRect]="i == nowRectId"
+      />
     </svg>
     <div class="btns">
-      <button mat-flat-button color="primary" (click)="moveToPrevRoad()" [disabled]="prevRoads.length==0">
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="moveToPrevRoad()"
+        [disabled]="prevRoads.length == 0"
+      >
         <mat-icon class="title-icon">keyboard_arrow_left</mat-icon>上一张
       </button>
-      <button mat-flat-button color="primary" (click)="moveToNextRoad()">下一张<mat-icon class="title-icon">
-          keyboard_arrow_right</mat-icon></button>
+      <button mat-flat-button color="primary" (click)="moveToNextRoad()">
+        下一张<mat-icon class="title-icon"> keyboard_arrow_right</mat-icon>
+      </button>
     </div>
   </div>
   <div id="right" class="panel">
-    <div *ngIf="road.Rects.length>0">
-      <button mat-flat-button *ngIf="road.Rects.length>1" (click)="moveToNextRect()" color="primary"
-        class="along-btn">下一组</button>
+    <div *ngIf="road.Rects.length > 0">
+      <button
+        mat-flat-button
+        *ngIf="road.Rects.length > 1"
+        (click)="moveToNextRect()"
+        color="primary"
+        class="along-btn"
+      >
+        下一组
+      </button>
       <div id="data">
         <mat-list>
           <mat-list-item>结果数据</mat-list-item>
-          <mat-list-item>类型：{{getNowType()}}</mat-list-item>
+          <mat-list-item>类型：{{ getNowType() }}</mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item>Xmin：{{road.Rects[nowRectId].Xmin}}</mat-list-item>
+          <mat-list-item>Xmin：{{ road.Rects[nowRectId].Xmin }}</mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item>Xmax：{{road.Rects[nowRectId].Xmax}}</mat-list-item>
+          <mat-list-item>Xmax：{{ road.Rects[nowRectId].Xmax }}</mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item>Ymin：{{road.Rects[nowRectId].Ymin}}</mat-list-item>
+          <mat-list-item>Ymin：{{ road.Rects[nowRectId].Ymin }}</mat-list-item>
           <mat-divider></mat-divider>
-          <mat-list-item>Ymax：{{road.Rects[nowRectId].Ymax}}</mat-list-item>
+          <mat-list-item>Ymax：{{ road.Rects[nowRectId].Ymax }}</mat-list-item>
           <mat-divider></mat-divider>
         </mat-list>
         <mat-list id="correct-data">
@@ -38,43 +66,81 @@
           <mat-list-item>
             <mat-form-field>
               <mat-label>类型</mat-label>
-              <mat-select [(ngModel)]="newRoad.Rects[nowRectId].Type" selected="newRoad.Rects[nowRectId].Type">
-                <mat-option *ngFor="let type of roadRectTypes" [value]="getType(type)">
-                  {{type}}
+              <mat-select
+                [(ngModel)]="newRoad.Rects[nowRectId].Type"
+                selected="newRoad.Rects[nowRectId].Type"
+              >
+                <mat-option
+                  *ngFor="let type of roadRectTypes"
+                  [value]="getType(type)"
+                >
+                  {{ type }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </mat-list-item>
           <mat-list-item>
             <mat-form-field>
-              <input type="number" matInput placeholder="Xmin" [(ngModel)]="newRoad.Rects[nowRectId].Xmin">
+              <input
+                type="number"
+                matInput
+                placeholder="Xmin"
+                [(ngModel)]="newRoad.Rects[nowRectId].Xmin"
+              />
             </mat-form-field>
           </mat-list-item>
           <mat-list-item>
             <mat-form-field>
-              <input type="number" matInput placeholder="Xmax" [(ngModel)]="newRoad.Rects[nowRectId].Xmax">
+              <input
+                type="number"
+                matInput
+                placeholder="Xmax"
+                [(ngModel)]="newRoad.Rects[nowRectId].Xmax"
+              />
             </mat-form-field>
           </mat-list-item>
           <mat-list-item>
             <mat-form-field>
-              <input type="number" matInput placeholder="Ymin" [(ngModel)]="newRoad.Rects[nowRectId].Ymin">
+              <input
+                type="number"
+                matInput
+                placeholder="Ymin"
+                [(ngModel)]="newRoad.Rects[nowRectId].Ymin"
+              />
             </mat-form-field>
           </mat-list-item>
           <mat-list-item>
             <mat-form-field>
-              <input type="number" matInput placeholder="Ymax" [(ngModel)]="newRoad.Rects[nowRectId].Ymax">
+              <input
+                type="number"
+                matInput
+                placeholder="Ymax"
+                [(ngModel)]="newRoad.Rects[nowRectId].Ymax"
+              />
             </mat-form-field>
           </mat-list-item>
         </mat-list>
       </div>
       <div class="btns">
-        <button mat-flat-button color="primary" (click)="recordCorrectData()">记录</button>
-        <button mat-flat-button color="primary" (click)="resetCorrectData()">重置</button>
+        <button mat-flat-button color="primary" (click)="recordCorrectData()">
+          记录
+        </button>
+        <button mat-flat-button color="primary" (click)="resetCorrectData()">
+          重置
+        </button>
       </div>
-      <button mat-flat-button color="primary" class="along-btn" (click)="downloadConfig()">下载最新配置</button>
+      <button
+        mat-flat-button
+        color="primary"
+        class="along-btn"
+        (click)="downloadConfig()"
+      >
+        下载最新配置
+      </button>
     </div>
-    <div *ngIf="road.Rects.length==0">
+    <div *ngIf="road.Rects.length == 0">
       暂时没有标注
     </div>
+    <a class="link" mat-button routerLink="/training">转到训练页面</a>
   </div>
 </div>
