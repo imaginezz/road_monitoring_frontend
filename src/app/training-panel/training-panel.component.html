@@ -51,34 +51,27 @@
   </div>
   <div id="right" class="panel">
     <div class="btns">
-      <button class="r-btn" mat-flat-button color="primary" (click)="test()">
+      <button
+        class="r-btn"
+        mat-flat-button
+        color="primary"
+        (click)="start()"
+        [disabled]="isStarted"
+      >
         运行
       </button>
-      <button class="r-btn" mat-flat-button color="warn">中断</button>
+      <button
+        class="r-btn"
+        mat-flat-button
+        color="warn"
+        (click)="end()"
+        [disabled]="!isStarted"
+      >
+        中断
+      </button>
     </div>
     <mat-card class="outputs">
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
-      <p>输出输出</p>
+      <p *ngFor="let result of results">{{ result }}</p>
     </mat-card>
     <a class="link" mat-button routerLink="/">转到结果页面</a>
   </div>
